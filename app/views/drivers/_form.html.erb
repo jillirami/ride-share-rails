@@ -1,0 +1,12 @@
+<%= form_with model: @driver, class: form_class do |f| %>
+
+  <p><%= intro_text %></p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.submit action_name, class: "driver-form__submit-btn" %>
+
+<% end %>

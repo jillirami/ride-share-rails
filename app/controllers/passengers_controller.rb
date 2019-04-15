@@ -12,6 +12,6 @@ class PassengersController < ApplicationController
   end
 
   def new
-    @passenger= Passenger.new(name: "Default Passenger")
+    @passenger= Passenger.new()
   end
 end
