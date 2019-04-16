@@ -19,3 +19,14 @@
     <%end%>
   </ul>
   
+<nav>
+  <ul>
+    <li>
+      <%= link_to "Edit Passenger", edit_trip_path %>
+    </li>
+  <%# <%= link_to "Delete Passenger", destroy_passengers_path %>
+    <li>
+      <%= link_to "Create New Trip for #{@passenger.name}", new_trip_path %>
+    </li>
+  </ul>
+</nav>
