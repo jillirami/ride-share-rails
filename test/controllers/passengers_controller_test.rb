@@ -75,7 +75,7 @@ describe PassengersController do
     it "will redirect to 'new' form if there are any errors" do
       passenger_hash = {
         passenger: {
-          name: '',
+          name: nil,
           phone_num: 'new vin'
         }
       }
@@ -84,10 +84,8 @@ describe PassengersController do
         post passengers_path, params: passenger_hash
       end.wont_change 'Passenger.count'
 
-      must_respond_with :redirect
-      must_redirect_to new_passenger_path
+      must_respond_with :bad_request
     end
-
   end
 
   describe 'destroy' do
