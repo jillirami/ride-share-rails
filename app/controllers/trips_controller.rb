@@ -18,13 +18,13 @@ class TripsController < ApplicationController
   def create
     trip = Trip.new(trip_params)
 
-    is_successful = driver.save
+    is_successful = trip.save
 
     if is_successful
       redirect_to trip_path(trip.id)
     else
       @trip = trip
-      render :new
+      render :new, status: :bad_request
     end
   end
 
