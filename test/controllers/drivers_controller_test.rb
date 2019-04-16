@@ -126,7 +126,7 @@ describe DriversController do
     end
 
     it "can delete a driver" do
-      new_driver = Driver.create(name: "Jillianne")
+      new_driver = Driver.create(name: "Jillianne", vin: "8675309")
 
       expect {
         delete driver_path(new_driver.id)

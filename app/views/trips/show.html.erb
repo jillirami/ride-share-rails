@@ -1,6 +1,11 @@
 
-<%= @trip.driver_id %><br>
-<%= @trip.passenger_id %><br>
-<%= @trip.date %><br>
-<%= @trip.rating %><br>
-<%= @trip.cost / 10 %><br>
+<% driver_id = @trip.driver_id %>
+<%= link_to "Trip Driver ID ##{driver_id}" , driver_path(driver_id) %><br>
+<% passenger_id = @trip.passenger_id %>
+<%= link_to "Trip Passenger ID ##{passenger_id}", passenger_path(passenger_id) %><br>
+Date of Trip: <%= @trip.date %><br>
+Trip Rating: <%= @trip.rating %><br>
+Trip Cost: <%= @trip.cost / 10 %><br>
+
+
+
