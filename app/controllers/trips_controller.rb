@@ -16,14 +16,13 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = Trip.new(trip_params)
+    @trip = Trip.new(trip_params)
 
-    is_successful = trip.save
+    is_successful = @trip.save
 
     if is_successful
-      redirect_to trip_path(trip.id)
+      redirect_to trip_path(@trip.id)
     else
-      @trip = trip
       render :new, status: :bad_request
     end
   end

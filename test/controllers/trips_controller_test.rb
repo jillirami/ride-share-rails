@@ -21,11 +21,16 @@ describe TripsController do
       input_date = 2019 - 0o5 - 0o4
       input_rating = nil
       input_cost = 35.42
+      input_passenger = 1
+      input_driver = 2
+
       test_input = {
         "trip": {
-          date: input_title,
+          date: input_date,
           rating: input_rating,
-          cost: input_cost
+          cost: input_cost,
+          passenger_id: input_passenger,
+          driver_id: input_driver
         }
       }
 
@@ -35,7 +40,7 @@ describe TripsController do
       end.must_change 'Trip.count', 1
 
       # Assert
-      trip_path = Trip.find_by(cost: input_cost)
+
       expect(new_trip).wont_be_nil
       expect(new_trip.date).must_equal input_date
       expect(new_trip.rating).must_equal nil
@@ -52,7 +57,7 @@ describe TripsController do
 
       test_input = {
         "trip": {
-          date: input_title,
+          date: input_date,
           rating: input_rating,
           cost: input_cost
         }
@@ -60,7 +65,7 @@ describe TripsController do
 
       # Act
       expect do
-        post books_path, params: test_input
+        post trips_path, params: test_input
       end.wont_change 'Trip.count'
       # .must_change "Book.count", 0
 
