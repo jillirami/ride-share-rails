@@ -21,7 +21,8 @@ class Driver < ApplicationRecord
       earnings << t.cost
     end
     total_earning = earnings.reduce(:+)
-    total_earning = total_earning / 10.0
+    total_earning = (total_earning / 10.0)
+    total_earning = total_earning * 0.8 - 1.65
     return total_earning
   end
 
