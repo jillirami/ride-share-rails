@@ -12,11 +12,14 @@
     <li>
       <%= @passenger.phone_num %>
     </li>
-    <%@passenger.trips.each do |trip|%>
+    <% @passenger.trips.each do |trip|%>
     <li>
       Trip on: <%= link_to trip.date, trip_path(trip.id) %>
     </li>
     <%end%>
+    <li>
+      Total amount charged: $<%= @passenger.total_charged %>
+    </li>
   </ul>
   
 <nav>
