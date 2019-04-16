@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RideShareRails</title>
+    <title>RideShare</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +9,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<body>
+  <nav>
+    <ul>
+      <li><%= link_to "View All Passengers", passengers_path %></li>
+      <li><%= link_to "View All Drivers", drivers_path %></li>
+      <li><%= link_to "Create New Passenger", new_passenger_path%></li>
+      <li><%= link_to "Create New Driver", new_driver_path%></li>
+    </ul>
+  </nav>
+
+  <main>
     <%= yield %>
-  </body>
+  </main>
+</body>
 </html>
