@@ -8,7 +8,7 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
-    head :not_found if @passenger.nil?
+    redirect_to passengers_path if @passenger.nil?
   end
 
   def new
@@ -23,8 +23,8 @@ class PassengersController < ApplicationController
     if is_successful
       redirect_to passenger_path(passenger.id)
     else
-      flash[:error] = 'Sorry, there was an error saving this Passenger. :('
-      head :not_found
+      @passenger = passenger
+      render :new
     end
   end
 

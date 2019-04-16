@@ -23,8 +23,8 @@ class DriversController < ApplicationController
     if is_successful
       redirect_to driver_path(driver.id)
     else
-      flash[:error] = 'Sorry, there was an error saving this Driver. :('
-      head :not_found
+      @driver = driver
+      render :new
     end
   end
 
