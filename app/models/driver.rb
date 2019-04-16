@@ -4,7 +4,7 @@ class Driver < ApplicationRecord
   has_many :trips
 
   def avg_rating
-    if trips.length == 0
+    if self.trips.length == 0
       avg_rating = 0
     else
       ratings = []
@@ -19,7 +19,7 @@ class Driver < ApplicationRecord
   end
 
   def total_earned
-    if trips.length == 0
+    if self.trips.length == 0
       total_earned = 0
     else
       earnings = []
@@ -27,7 +27,7 @@ class Driver < ApplicationRecord
         earnings << t.cost
       end
       total_earned = earnings.reduce(:+)
-      total_earned = (total_earnings / 10.0)
+      total_earned = (total_earned / 10.0)
       total_earned * 0.8 - 1.65
     end
     return total_earned
