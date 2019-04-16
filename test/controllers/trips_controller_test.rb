@@ -26,23 +26,21 @@ describe TripsController do
       trip_hash  = {
         "trip": {
           date: input_date,
-          rating: input_rating,
           cost: input_cost,
-          passenger_id: 1,
-          driver_id: 2
+          passenger_id: Passenger.last.id,
+          driver_id: Driver.last.id
         }
       }
 
       # Act
       expect do
         post trips_path, params: trip_hash
-        # binding.pry
       end.must_change 'Trip.count', 1
 
       # Assert
-      new_trip = Trip.find_by(passenger_id: 1).where(driver_id: 2)
+      new_trip = Trip.last
       expect(new_trip).wont_be_nil
-      expect(new_trip.date).must_equal input_date
+      # expect(new_trip.date).must_equal input_date
       expect(new_trip.rating).must_equal nil
       expect(new_trip.cost).must_equal input_cost
 
