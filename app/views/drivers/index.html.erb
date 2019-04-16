@@ -1,11 +1,10 @@
 <h1>All Drivers</h1>
+<p>Find me in app/views/drivers/index.html.erb</p>
 
 <% @drivers.each do |driver|%>
-
-<ul>
-<% name = driver.name %>
+<ul><% name = driver.name %>
   <li>Name: <%= link_to name, driver_path(driver.id) %>  </li>
 </ul>
-
 <% end %>
-<p>Find me in app/views/drivers/index.html.erb</p>
+
+

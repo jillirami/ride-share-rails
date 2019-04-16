@@ -2,5 +2,17 @@
 <p>Find me in app/views/drivers/show.html.erb</p>
 
 Driver Name: <%= @driver.name %><br>
+Driver Vin: <%= @driver.vin %><br>
 Average Rating: <%= @driver.avg_rating %><br>
-Earnings: <%= @driver.earnings %>
+Earnings: <%= @driver.earnings %><br>
+
+<br>Driver Trips: <% @driver.trips.each do |t| %>
+<% date = t.date %>
+  <ul><li> Trip on <%= link_to date, trip_path(t.id) %></li></ul>
+<% end %>
+
+
+<%= link_to "Back to All Drivers", drivers_path %><br>
+<%= link_to "Edit #{@driver.name}", edit_driver_path(@driver.id) %><br>
+<%= link_to "Delete #{@driver.name}", 
+    driver_path(@driver.id), method: :delete %>
