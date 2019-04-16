@@ -4,7 +4,7 @@
 Driver Name: <%= @driver.name %><br>
 Driver Vin: <%= @driver.vin %><br>
 Average Rating: <%= @driver.avg_rating %><br>
-Earnings: <%= @driver.earnings %><br>
+Earnings: $<%= @driver.total_earned %><br>
 
 <% if @driver.trips.length != 0 %>
   <br>Driver Trips: <% @driver.trips.each do |t| %>

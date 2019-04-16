@@ -18,19 +18,19 @@ class Driver < ApplicationRecord
     return avg_rating
   end
 
-  def earnings
+  def total_earned
     if trips.length == 0
-      total_earnings = 0
+      total_earned = 0
     else
       earnings = []
       self.trips.each do |t|
         earnings << t.cost
       end
-      total_earnings = earnings.reduce(:+)
-      total_earnings = (total_earnings / 10.0)
-      total_earnings * 0.8 - 1.65
+      total_earned = earnings.reduce(:+)
+      total_earned = (total_earnings / 10.0)
+      total_earned * 0.8 - 1.65
     end
-    return total_earnings
+    return total_earned
   end
 
   validates :name, presence: true
