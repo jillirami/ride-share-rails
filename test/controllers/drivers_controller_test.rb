@@ -36,11 +36,36 @@ describe DriversController do
   end
 
   describe 'edit' do
-    # Your tests go here
+    it "can get the edit page for an existing driver" do
+      get edit_driver_path(driver.id)
+      must_respond_with :success
+    end
+
+    it "will respond with redirect when attempting to edit a nonexistant driver" do
+      get edit_driver_path(-1)
+      must_respond_with :redirect
+    end
   end
 
   describe 'update' do
-    # Your tests go here
+    driver_hash = {
+      driver: {
+        name: 'new name', vin: 'new vin'
+      },
+    }
+
+    it "can update an existing driver" do
+      id = Driver.first.id
+      expect {
+        patch driver_path(id), params: driver_hash
+      }.wont_change "Driver.count"
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      patch driver_path(-1), params: driver_hash
+      
+      must_respond_with :redirect
+    end
   end
 
   describe 'new' do
@@ -90,6 +115,25 @@ describe DriversController do
   end
 
   describe 'destroy' do
-    # Your tests go here
+    it "returns a 404 if the driver if not found" do
+      invalid_id = "NOT A VALID ID"
+
+      expect {
+        delete driver_path(invalid_id)
+      }.wont_change "Driver.count"
+
+      must_respond_with :not_found
+    end
+
+    it "can delete a driver" do
+      new_driver = Driver.create(name: "Jillianne")
+
+      expect {
+        delete driver_path(new_driver.id)
+      }.must_change "Driver.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
   end
 end
