@@ -1,7 +1,21 @@
-<h1>Passengers#show</h1>
-<p>Find me in app/views/passengers/show.html.erb</p>
+<h1>View Passenger</h1>
 
 
-  <%= @passenger.name %>
+  <div>
+    <img src="https://picsum.photos/200">
+  </div>
 
-  <%= @passenger.phone_num %>
+  <ul>
+    <li>
+      <%= @passenger.name %>
+    </li>
+    <li>
+      <%= @passenger.phone_num %>
+    </li>
+    <%@passenger.trips.each do |trip|%>
+    <li>
+      Trip on: <%= link_to trip.date, trip_path(trip.id) %>
+    </li>
+    <%end%>
+  </ul>
+  
