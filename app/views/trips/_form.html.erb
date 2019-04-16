@@ -1,0 +1,27 @@
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_with model: @trip do |f| %>
+
+  <p><%= intro_text %></p>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
+  <%= f.label :cost %>
+  <%= f.number_field :cost %>
+
+  <%= f.label :driver %>
+  <%= f.text_field :driver, :placeholder => "#{Trip.first.driver_id}"%>
+
+  <%= f.submit action_name, class: "new-trip__submit-btn" %>
+
+<% end %>
