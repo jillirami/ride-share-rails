@@ -100,7 +100,7 @@ describe DriversController do
     it "will redirect to 'new' form if there are any errors" do
       driver_hash = {
         driver: {
-          name: '',
+          name: nil,
           vin: 'new vin'
         }
       }
@@ -109,8 +109,7 @@ describe DriversController do
         post drivers_path, params: driver_hash
       end.wont_change 'Driver.count'
 
-      must_respond_with :redirect
-      must_redirect_to new_driver_path
+      must_respond_with :bad_request
     end
   end
 
