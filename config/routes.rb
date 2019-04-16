@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: "homepages#index"
+  root to: 'homepages#homepages'
 
   resources :passengers
   resources :drivers
