@@ -8,7 +8,7 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
-    redirect_to drivers_path if @trip.nil?
+    redirect_to trips_path if @trip.nil?
   end
 
   def new
@@ -27,9 +27,38 @@ class TripsController < ApplicationController
     end
   end
 
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    redirect_to trips_path if @trip.nil?
+  end
+
+  def update
+    trip = Trip.find_by(id: params[:id])
+
+    if trip.nil?
+      redirect_to trips_path
+    else
+      is_successful = Trip.update(trip_params)
+    end
+
+    redirect_to trip_path(trip.id) if is_successful
+  end
+
+  def destroy
+    trip = Trip.find_by(id: params[:id])
+
+    if trip.nil?
+      head :not_found
+    else
+      trip.destroy
+      redirect_to trips_path
+    end
+  end
+
   private
 
   def trip_params
-    params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+    params.require(:trip).permit(:date, :rating, :cost, :trip_id, :passenger_id)
   end
 end

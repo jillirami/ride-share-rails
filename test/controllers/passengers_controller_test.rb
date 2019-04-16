@@ -89,6 +89,30 @@ describe PassengersController do
   end
 
   describe 'destroy' do
-    # Your tests go here
+    it 'returns a 404 if the passenger is not found' do
+      invalid_id = 'NOT A VALID ID'
+
+      # Act
+      # Try to do the Books#destroy action
+
+      # Assert
+      # Should respond with not found
+      # The count will change by 0, i.e. won't change
+    end
+
+    it 'can delete a passenger' do
+      # Arrange - Create a book
+      new_passenger = Passenger.create(name: 'Ariana Bray', phone_num: '3032013932')
+
+      expect do
+        # Act
+        delete passenger_path(new_passenger.id)
+
+        # Assert
+      end.must_change 'Passenger.count', -1
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
   end
 end

@@ -71,8 +71,4 @@ describe TripsController do
       must_respond_with :bad_request
     end
   end
-
-  describe 'destroy' do
-    # Your tests go here
-  end
 end

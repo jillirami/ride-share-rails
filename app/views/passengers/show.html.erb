@@ -24,7 +24,7 @@
     <li>
       <%= link_to "Edit Passenger", edit_trip_path %>
     </li>
-  <%# <%= link_to "Delete Passenger", destroy_passengers_path %>
+      <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
     <li>
       <%= link_to "Create New Trip for #{@passenger.name}", new_trip_path %>
     </li>
