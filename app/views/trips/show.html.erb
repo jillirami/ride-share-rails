@@ -7,5 +7,7 @@ Date of Trip: <%= @trip.date %><br>
 Trip Rating: <%= @trip.rating %><br>
 Trip Cost: <%= @trip.cost / 10 %><br>
 
+<%= link_to "Delete Trip", trip_path, method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %>
+
 
 
