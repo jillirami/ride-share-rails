@@ -4,16 +4,20 @@ class Passenger < ApplicationRecord
   has_many :trips
 
   def total_charged
-    if self.trips.length == 0
+    if trips.empty?
       total_charged = 0
     else
       charges = []
-      self.trips.each do |t|
-        charges << t.cost
+      trips.each do |t|
+        if t.cost == nil
+          total_charged = 0
+        else
+          charges << t.cost
+        end
       end
       total_charged = charges.reduce(:+) / 10.0
     end
-    return total_charged
+    total_charged
   end
 
   validates :name, presence: :true

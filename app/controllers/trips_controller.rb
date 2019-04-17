@@ -2,11 +2,11 @@
 
 class TripsController < ApplicationController
   def index
-    if params[:passenger_id]
-      @trips = Trip.where(passenger: Passenger.find_by(id: [:passenger_id]))
-    else
-      @trips = Trip.all.order(:date)
-    end
+    @trips = if params[:passenger_id]
+               Trip.where(passenger: Passenger.find_by(id: [:passenger_id]))
+             else
+               Trip.all.order(:date)
+             end
   end
 
   def show
@@ -16,11 +16,11 @@ class TripsController < ApplicationController
   end
 
   def new
-    if params[:passenger_id]
-      @trip = Trip.new(passenger: Passenger.find_by(id: params[:passenger_id]))
-    else
-      @trip = Trip.new
-    end
+    @trip = if params[:passenger_id]
+              Trip.new(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(status: true).id)
+            else
+              Trip.new
+            end
   end
 
   def create
@@ -29,6 +29,9 @@ class TripsController < ApplicationController
     is_successful = @trip.save
 
     if is_successful
+      driver = Driver.find_by(id: @trip.driver_id)
+      driver.status = false
+      driver.save
       redirect_to trip_path(@trip.id)
     else
       render :new, status: :bad_request
@@ -67,6 +70,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:date, :rating, :cost, :trip_id, :passenger_id)
+    params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end
