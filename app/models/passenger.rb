@@ -3,13 +3,16 @@
 class Passenger < ApplicationRecord
   has_many :trips
 
+  validates :name, presence: :true
+  validates :phone_num, presence: :true
+
   def total_charged
     if trips.empty?
       total_charged = 0
     else
       charges = []
       trips.each do |t|
-        if t.cost == nil
+        if t.cost.nil?
           total_charged = 0
         else
           charges << t.cost
@@ -19,7 +22,4 @@ class Passenger < ApplicationRecord
     end
     total_charged
   end
-
-  validates :name, presence: :true
-  validates :phone_num, presence: :true
 end

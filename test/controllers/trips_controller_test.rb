@@ -71,4 +71,35 @@ describe TripsController do
       must_respond_with :bad_request
     end
   end
+
+
+  describe "destroy" do
+    # it 'returns a 404 if the trip is not found' do
+    #   invalid_trip = 'NOT A VALID ID'
+
+    #   # Act
+    #   # Try to do the Books#destroy action
+
+    #   # Assert
+    #   # Should respond with not found
+    #   # The count will change by 0, i.e. won't change
+
+    # end
+
+    it 'can delete a trip' do
+      # Arrange - Create a book
+      new_trip = Trip.create(passenger_id: 1, driver_id: 2, cost: 50.0)
+
+      expect do
+        # Act
+        delete trip_path(new_trip.id)
+
+        # Assert
+      end.must_change 'Trip.count', -1
+
+      must_respond_with :redirect
+      must_redirect_to trips_path
+    end
+  end
+  
 end
