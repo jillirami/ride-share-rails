@@ -1,10 +1,15 @@
-<h1>Drivers#show</h1>
-<p>Find me in app/views/drivers/show.html.erb</p>
+<h2>View Driver <%=@driver.name%></h2>
 
-Driver Name: <%= @driver.name %><br>
-Driver Vin: <%= @driver.vin %><br>
-Average Rating: <%= @driver.avg_rating %><br>
-Earnings: $<%= @driver.total_earned %><br>
+<div>
+  <img src="https://loremflickr.com/320/240/face">
+</div>
+
+<ul>
+  <li>Driver Name: <%= @driver.name %><br></li>
+  <li>Driver Vin: <%= @driver.vin %><br></li>
+  <li>Average Rating: <%= @driver.avg_rating %><br></li>
+  <li>Earnings: $<%= @driver.total_earned %><br></li>
+</ul>
 
 <% if @driver.trips.length != 0 %>
   <br>Driver Trips: <% @driver.trips.each do |t| %>
@@ -14,6 +19,12 @@ Earnings: $<%= @driver.total_earned %><br>
 <% end %>
 
 <br>
-<%= link_to "Edit Driver", edit_driver_path(@driver.id) %><br>
-<%= link_to "Delete Driver", 
-    driver_path(@driver.id), method: :delete %>
+<ul>
+  <li>
+    <%= link_to "Edit Driver", edit_driver_path(@driver.id) %><br>
+  </li>
+  <li>
+    <%= link_to "Delete Driver", 
+      driver_path(@driver.id), method: :delete %>
+  </li>
+</ul>

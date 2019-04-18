@@ -1,7 +1,7 @@
-<h1>View Passenger</h1>
+<h2>Passenger Details: <%= @passenger.name %></h2>
 
 
-  <div>
+  <div class="photo">
     <img src="https://picsum.photos/200">
   </div>
 
@@ -22,16 +22,18 @@
     </li>
   </ul>
   
-<nav>
-  <ul>
-    <li>
-      <%= link_to "Edit Passenger", edit_trip_path %>
-    </li>
-    <li>
-      <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
-    </li>
-    <li>
-      <%= link_to "Create New Trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %>
-    </li>
-  </ul>
-</nav>
+<footer>
+  <nav>
+    <ul>
+      <li>
+        <%= link_to "Edit Passenger", edit_trip_path %>
+      </li>
+      <li>
+        <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
+      </li>
+      <li>
+        <%= link_to "Create New Trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %>
+      </li>
+    </ul>
+  </nav>
+</footer>

@@ -8,16 +8,17 @@
   </ul>
 <% end %>
 
+<main>
+  <%= form_with model: @passenger, class: form_class do |f| %>
 
-<%= form_with model: @passenger, class: form_class do |f| %>
+    <p><%= intro_text %></p>
 
-  <p><%= intro_text %></p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_num %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_num %>
+    <%= f.submit action_name, class: "passenger-form__submit-btn" %>
 
-  <%= f.submit action_name, class: "passenger-form__submit-btn" %>
-
-<% end %>
+  <% end %>
+</main>

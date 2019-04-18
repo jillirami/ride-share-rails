@@ -1,14 +1,23 @@
+<h2>Trip Details</h2>
 
-<% driver_id = @trip.driver_id %>
-<%= link_to "Trip Driver ID ##{driver_id}" , driver_path(driver_id) %><br>
-<% passenger_id = @trip.passenger_id %>
-<%= link_to "Trip Passenger ID ##{passenger_id}", passenger_path(passenger_id) %><br>
-Date of Trip: <%= @trip.date %><br>
-Trip Rating: <%= @trip.rating %><br>
-Trip Cost: <%= @trip.cost / 10 %><br>
+<ul>
+  <% driver_id = @trip.driver_id %>
+  <%= link_to "Trip Driver ID: ##{driver_id}" , driver_path(driver_id) %><br>
+  <% passenger_id = @trip.passenger_id %>
+  <%= link_to "Trip Passenger ID: ##{passenger_id}", passenger_path(passenger_id) %><br>
+</ul>
+<div class="trip_summary">
+  Date of Trip: <%= @trip.date %><br>
+  Trip Rating: <%= @trip.rating %><br>
+  Trip Cost: <%= @trip.cost / 10 %><br>
+</div>
 
-<%= link_to "Delete Trip", trip_path, method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %>
-<%= link_to "Edit Trip", edit_trip_path(@trip.id)%>
+<footer>
+  <nav>
+    <%= link_to "Delete Trip", trip_path, method: :delete, data: {confirm: "Are you sure you want to delete this trip?"} %>
+    <%= link_to "Edit Trip", edit_trip_path(@trip.id)%>
+  </nav>
+</footer>
 
 
 

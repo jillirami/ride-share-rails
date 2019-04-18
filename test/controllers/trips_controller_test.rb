@@ -87,11 +87,11 @@ describe TripsController do
 
     it 'can delete a trip' do
       # Arrange - Create a book
-      new_trip = Trip.create(passenger_id: 1, driver_id: 2, cost: 50.0)
+      new_trip = Trip.create(passenger_id: 1, driver_id: 2, cost: 50.0, date: '2019-05-04')
 
       expect do
         # Act
-        delete trip_path(new_trip.id)
+        destroy trip_path(new_trip.id)
 
         # Assert
       end.must_change 'Trip.count', -1
