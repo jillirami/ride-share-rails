@@ -58,7 +58,7 @@ class TripsController < ApplicationController
       is_successful = Trip.update(trip_params)
     end
 
-    redirect_to trip_path(trip.id) if is_successful
+    redirect_to passenger_path(trip.passenger_id) if is_successful
   end
 
   def destroy

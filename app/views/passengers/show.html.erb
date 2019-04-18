@@ -1,5 +1,24 @@
 <h2>Passenger Details: <%= @passenger.name %></h2>
 
+<% nil_trips = @passenger.trips.where(rating: nil) %>
+<%# add logic to change driver status back to true%>
+<% if nil_trips.length > 0 %>
+    <div>
+      <%= form_with model: nil_trips.first, class: "rating" do |f| %> 
+      
+      <%= f.label :rating %>
+      <%= f.select :rating, (1..5) %>
+
+      <%= f.submit "Submit Rating", class: "rating-save-button" %> 
+      <% end %> 
+    </div>
+    
+<% else %> 
+    <div>
+      <%= link_to "Request a Ride!", passenger_trips_path(@passenger.id), method: :post %>
+    </div>
+<% end %>
+
 
   <div class="photo">
     <img src="https://picsum.photos/200">
@@ -30,9 +49,6 @@
       </li>
       <li>
         <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
-      </li>
-      <li>
-        <%= link_to "Create New Trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %>
       </li>
     </ul>
   </nav>
