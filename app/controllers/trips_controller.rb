@@ -39,6 +39,7 @@ class TripsController < ApplicationController
       redirect_to passenger_path(@trip.passenger_id)
     else
       flash[:error] = 'There was a problem'
+      redirect_to root_path
     end
   end
 
@@ -64,13 +65,10 @@ class TripsController < ApplicationController
     trip = Trip.find_by(id: params[:id])
     passenger = trip.passenger_id
 
-    if trip.nil?
-      # figure out where to redirect on bad request
-      head :bad_request
-    else
-      trip.destroy
-      redirect_to passenger_path(passenger)
-    end
+    redirect_to root_path if trip.nil?
+
+    trip.destroy
+    redirect_to passenger_path(passenger)
   end
 
   private

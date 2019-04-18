@@ -70,7 +70,7 @@ describe TripsController do
       # .must_change "Book.count", 0
 
       # Assert
-      must_respond_with :bad_request
+      must_redirect_to root_path
     end
   end
 
@@ -86,7 +86,6 @@ describe TripsController do
     #   # The count will change by 0, i.e. won't change
 
     # end
-
 
     # WORKS IN ACTUALITY. maybe something with the path?
     it 'can delete a trip' do
