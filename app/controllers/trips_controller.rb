@@ -21,14 +21,14 @@ class TripsController < ApplicationController
 
   def create
     # find passenger
-    passenger = params[:passenger_id].to_i
+    passenger = params[:trip][:passenger_id].to_i
     driver = Driver.find_by(status: true)
     # find driver
     @trip = Trip.new(
       passenger_id: passenger,
       driver_id: driver.id,
-      date: DateTime.now.to_date,
-      cost: rand(200..10_000) # random number between 200 - 10000 cents (2-100 dollars)
+      date: DateTime.now,
+      cost: rand(20..100) # random number between 200 - 10000 cents (2-100 dollars)
     )
 
     is_successful = @trip.save
