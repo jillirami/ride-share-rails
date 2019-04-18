@@ -65,7 +65,8 @@ class TripsController < ApplicationController
     passenger = trip.passenger_id
 
     if trip.nil?
-      head :not_found
+      # figure out where to redirect on bad request
+      head :bad_request
     else
       trip.destroy
       redirect_to passenger_path(passenger)

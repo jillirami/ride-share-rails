@@ -32,7 +32,7 @@ describe TripsController do
         }
       }
       # Act
-      raise
+      # Ask TA why this error disappears/reappears
       expect do
         trips_path params: trip_hash
       end.must_change 'Trip.count', 1
@@ -47,7 +47,7 @@ describe TripsController do
       must_respond_with :redirect
     end
 
-    it 'will return a 400 with an invalid trip' do
+    it 'will return a bad request with an invalid trip' do
       # Arrange
       input_date = '',
                    input_rating = nil,
@@ -55,6 +55,8 @@ describe TripsController do
 
       test_input = {
         "trip": {
+          passenger_id: 0,
+          driver_id: 1,
           date: input_date,
           rating: input_rating,
           cost: input_cost
@@ -85,13 +87,17 @@ describe TripsController do
 
     # end
 
+
+    # WORKS IN ACTUALITY. maybe something with the path?
     it 'can delete a trip' do
-      # Arrange - Create a book
-      new_trip = Trip.create(passenger_id: 1, driver_id: 2, cost: 50.0, date: '2019-05-04')
+      # Arrange - Create a trip
+      passenger = Passenger.create(name: 'Ariana', phone_num: 3_033_033_030)
+      puts passenger.id
+      new_trip = passenger.trips.create(passenger_id: passenger.id, driver_id: 8, cost: 50.0, date: '2019-05-04')
 
       expect do
         # Act
-        destroy trip_path(new_trip.id)
+        delete passenger_trips_path(new_trip.passenger_id, new_trip)
 
         # Assert
       end.must_change 'Trip.count', -1
