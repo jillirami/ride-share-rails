@@ -65,8 +65,6 @@ class TripsController < ApplicationController
     trip = Trip.find_by(id: params[:id])
     passenger = trip.passenger_id
 
-    redirect_to root_path if trip.nil?
-
     trip.destroy
     redirect_to passenger_path(passenger)
   end

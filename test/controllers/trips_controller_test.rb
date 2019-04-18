@@ -4,17 +4,61 @@ require 'test_helper'
 require 'pry'
 
 describe TripsController do
+  let (:trip) do
+    Trip.create(passenger_id: Passenger.first.id, driver_id: Driver.find_by(status: true).id, cost: 20, date: '2019-01-11')
+  end
   describe 'show' do
-    # Your tests go here
+    it 'can get the show page for a trip' do
+      get trip_path(trip.id)
+
+      must_respond_with :success
+    end
+
+    it 'will redirect for an invalid trip' do
+      get trip_path(-1)
+
+      must_respond_with :redirect
+    end
   end
 
   describe 'edit' do
-    # Your tests go here
+    it 'can get the edit page for an existing trip' do
+      get edit_trip_path(trip.id)
+      must_respond_with :success
+    end
+
+    it 'will respond with redirect when attempting to edit a nonexistant trip' do
+      get edit_trip_path(-1)
+      must_respond_with :redirect
+    end
   end
 
   describe 'update' do
-    # Your tests go here
+    trip = Trip.first
+      
+      trip_hash = {
+        "trip": {
+          date: "2019-10-10",
+          cost: 27.56,
+          passenger_id: Passenger.last.id,
+          driver_id: Driver.last.id
+        }
+      }
+      it 'can update an existing trip' do
+      
+
+      expect do
+        patch trip_path(trip.id), params: trip_hash
+      end.wont_change 'Trip.count'
+    end
+
+    it 'will redirect to the root page if given an invalid trip' do
+      patch trip_path(-1), params: trip_hash
+
+      must_respond_with :redirect
+    end
   end
+
 
   describe 'create' do
     it 'will save a new trip and redirect if given valid inputs' do
@@ -72,19 +116,6 @@ describe TripsController do
   end
 
   describe 'destroy' do
-    # it 'returns a 404 if the trip is not found' do
-    #   invalid_trip = 'NOT A VALID ID'
-
-    #   # Act
-    #   # Try to do the Books#destroy action
-
-    #   # Assert
-    #   # Should respond with not found
-    #   # The count will change by 0, i.e. won't change
-
-    # end
-
-    # WORKS IN ACTUALITY. maybe something with the path?
     it 'can delete a trip' do
       # Arrange - Create a trip
       passenger = Passenger.create(name: 'Ariana', phone_num: 3_033_033_030)
