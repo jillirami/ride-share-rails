@@ -31,10 +31,10 @@ describe TripsController do
           driver_id: Driver.last.id
         }
       }
-
       # Act
+      raise
       expect do
-        post trips_path, params: trip_hash
+        trips_path params: trip_hash
       end.must_change 'Trip.count', 1
 
       # Assert
@@ -72,8 +72,7 @@ describe TripsController do
     end
   end
 
-
-  describe "destroy" do
+  describe 'destroy' do
     # it 'returns a 404 if the trip is not found' do
     #   invalid_trip = 'NOT A VALID ID'
 
@@ -101,5 +100,4 @@ describe TripsController do
       must_redirect_to trips_path
     end
   end
-  
 end

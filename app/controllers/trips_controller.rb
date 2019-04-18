@@ -16,25 +16,29 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = if params[:passenger_id]
-              Trip.new(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(status: true).id)
-            else
-              Trip.new
-            end
+    @trip = Trip.new
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    # find passenger
+    passenger = params[:passenger_id].to_i
+    driver = Driver.find_by(status: true)
+    # find driver
+    @trip = Trip.new(
+      passenger_id: passenger,
+      driver_id: driver.id,
+      date: DateTime.now.to_date,
+      cost: rand(200..10_000) # random number between 200 - 10000 cents (2-100 dollars)
+    )
 
     is_successful = @trip.save
 
     if is_successful
-      driver = Driver.find_by(id: @trip.driver_id)
       driver.status = false
       driver.save
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(@trip.passenger_id)
     else
-      render :new, status: :bad_request
+      flash[:error] = 'There was a problem'
     end
   end
 
