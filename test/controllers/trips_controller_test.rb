@@ -88,18 +88,18 @@ describe TripsController do
     it 'can delete a trip' do
       # Arrange - Create a trip
       passenger = Passenger.create(name: 'Ariana', phone_num: 3_033_033_030)
+      driver = Driver.find_by(status: true)
 
-      new_trip = passenger.trips.create(passenger_id: 4, driver_id: 8, cost: 50.0, date: '2019-05-04')
-      binding.pry
+      new_trip = passenger.trips.create(passenger_id: 4, driver_id: driver.id, cost: 50.0, date: '2019-05-04')
       expect do
         # Act
-        delete passenger_trips_path(new_trip.passenger_id, new_trip)
+        delete trip_path(new_trip.id)
 
         # Assert
       end.must_change 'Trip.count', -1
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to passenger_path(new_trip.passenger_id)
     end
   end
 end
