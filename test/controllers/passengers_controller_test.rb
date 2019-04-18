@@ -36,11 +36,39 @@ describe PassengersController do
   end
 
   describe 'edit' do
-    # Your tests go here
+    it 'can get the edit page for an existing passenger' do
+      get edit_passenger_path(passenger.id)
+      must_respond_with :success
+    end
+
+    it 'will respond with redirect when attempting to edit a nonexistant passenger' do
+      get edit_passenger_path(-1)
+      must_respond_with :redirect
+    end
   end
 
   describe 'update' do
-    # Your tests go here
+    passenger = Passenger.first
+      
+      passenger_hash = {
+        "passenger": {
+          name: "Ariana Bray",
+          phone_num: 27.56,
+        }
+      }
+      it 'can update an existing passenger' do
+      
+
+      expect do
+        patch passenger_path(passenger.id), params: passenger_hash
+      end.wont_change 'Passenger.count'
+    end
+
+    it 'will redirect to the root page if given an invalid trip' do
+      patch passenger_path(-1), params: passenger_hash
+
+      must_respond_with :redirect
+    end
   end
 
   describe 'new' do
