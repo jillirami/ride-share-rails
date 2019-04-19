@@ -48,6 +48,7 @@ describe PassengersController do
   end
 
   describe 'update' do
+<<<<<<< HEAD
     passenger_hash = {
       "passenger": {
         name: 'Ariana Bray',
@@ -57,13 +58,24 @@ describe PassengersController do
     it 'can update an existing passenger' do
     
       passenger = Passenger.first
+=======
+    passenger = Passenger.first
+>>>>>>> 36c5819f8ccee3ef352bac56eb9236a4f562b764
 
+    passenger_hash = {
+      "passenger": {
+        name: '2019-10-10',
+        phone_num: 303_033_030,
+        removed: true
+      }
+    }
+    it 'can update an existing passenger' do
       expect do
         patch passenger_path(passenger.id), params: passenger_hash
       end.wont_change 'Passenger.count'
     end
 
-    it 'will redirect to the root page if given an invalid trip' do
+    it 'will redirect to the root page if given an invalid passenger' do
       patch passenger_path(-1), params: passenger_hash
 
       must_respond_with :redirect
