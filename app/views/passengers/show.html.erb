@@ -31,11 +31,6 @@
     <li>
       <%= @passenger.phone_num %>
     </li>
-    <% present_trips.each do |trip|%>
-    <li>
-      Trip on: <%= link_to trip.date, trip_path(trip.id) %>
-    </li>
-    <%end%>
     <li>
       Total amount charged: $<%= @passenger.total_charged %>
     </li>

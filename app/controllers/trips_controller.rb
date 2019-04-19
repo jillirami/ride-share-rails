@@ -55,7 +55,7 @@ class TripsController < ApplicationController
     if trip.nil?
       redirect_to trips_path
     else
-      is_successful = Trip.update(trip_params)
+      is_successful = trip.update(trip_params)
     end
 
     redirect_to passenger_path(trip.passenger_id) if is_successful

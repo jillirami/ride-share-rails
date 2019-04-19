@@ -34,14 +34,15 @@ describe TripsController do
   end
 
   describe 'update' do
-    
+    # this test has gone from passing to failing to passing so many times and I can't figure out why.
+    # I've probably spent 3 hours on this test alone.
     it 'can update an existing trip' do
       trip_hash = {
         "trip": {
           date: '2019-10-10',
           cost: 27.56,
           passenger_id: Passenger.last.id,
-          driver_id: Driver.last.id
+          driver_id: Driver.find_by(status: true)
         }
       }
 
