@@ -21,7 +21,7 @@ class TripsController < ApplicationController
 
   def create
     # find passenger
-    passenger = params[:trip][:passenger_id].to_i
+    passenger = params[:passenger_id].to_i
     driver = Driver.find_by(status: true)
     # find driver
     @trip = Trip.new(
