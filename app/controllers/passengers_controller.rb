@@ -52,7 +52,7 @@ class PassengersController < ApplicationController
     if passenger.nil?
       head :not_found
     else
-      passenger.destroy
+      passenger.removed = false
       redirect_to passengers_path
     end
   end

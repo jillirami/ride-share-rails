@@ -34,18 +34,16 @@ describe TripsController do
   end
 
   describe 'update' do
-    trip = Trip.first
-      
+    
+    it 'can update an existing trip' do
       trip_hash = {
         "trip": {
-          date: "2019-10-10",
+          date: '2019-10-10',
           cost: 27.56,
           passenger_id: Passenger.last.id,
           driver_id: Driver.last.id
         }
       }
-      it 'can update an existing trip' do
-      
 
       expect do
         patch trip_path(trip.id), params: trip_hash
@@ -53,12 +51,19 @@ describe TripsController do
     end
 
     it 'will redirect to the root page if given an invalid trip' do
+      trip_hash = {
+        "trip": {
+          date: '2019-10-10',
+          cost: 27.56,
+          passenger_id: Passenger.last.id,
+          driver_id: Driver.last.id
+        }
+      }
       patch trip_path(-1), params: trip_hash
 
       must_respond_with :redirect
     end
   end
-
 
   describe 'create' do
     it 'will save a new trip and redirect if given valid inputs' do

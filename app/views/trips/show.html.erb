@@ -3,6 +3,7 @@
 <ul>
   <% driver_id = @trip.driver_id %>
   <%= link_to "Trip Driver ID: ##{driver_id}" , driver_path(driver_id) %><br>
+  
   <% passenger_id = @trip.passenger_id %>
   <%= link_to "Trip Passenger ID: ##{passenger_id}", passenger_path(passenger_id) %><br>
 </ul>

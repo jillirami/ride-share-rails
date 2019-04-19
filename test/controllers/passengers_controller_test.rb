@@ -55,7 +55,7 @@ describe PassengersController do
       }
     }
     it 'can update an existing passenger' do
-      passenger
+    
       passenger = Passenger.first
 
       expect do
@@ -136,8 +136,9 @@ describe PassengersController do
         delete passenger_path(new_passenger.id)
 
         # Assert
-      end.must_change 'Passenger.count', -1
+      end.must_change 'Passenger.count', 0
 
+      expect(new_passenger.removed).must_equal true
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
