@@ -126,16 +126,6 @@ describe PassengersController do
   end
 
   describe 'destroy' do
-    it 'returns a 404 if the passenger is not found' do
-      invalid_id = 'NOT A VALID ID'
-
-      # Act
-      # Try to do the Books#destroy action
-
-      # Assert
-      # Should respond with not found
-      # The count will change by 0, i.e. won't change
-    end
 
     it 'can delete a passenger' do
       # Arrange - Create a book
