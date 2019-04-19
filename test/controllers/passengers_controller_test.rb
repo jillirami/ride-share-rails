@@ -27,7 +27,6 @@ describe PassengersController do
 
       must_respond_with :success
     end
-
     it 'will redirect for an invalid passenger' do
       get passenger_path(-1)
 
@@ -48,26 +47,26 @@ describe PassengersController do
   end
 
   describe 'update' do
-<<<<<<< HEAD
     passenger_hash = {
       "passenger": {
         name: 'Ariana Bray',
         phone_num: 27.56
       }
     }
+
+    # these tests have been passing and failing and passing and failing and I can't figure out why. I've probably spent
+    # 3 hours on these tests alone
     it 'can update an existing passenger' do
       passenger = Passenger.first
-=======
-    passenger = Passenger.first
->>>>>>> 36c5819f8ccee3ef352bac56eb9236a4f562b764
 
-    passenger_hash = {
-      "passenger": {
-        name: '2019-10-10',
-        phone_num: 303_033_030,
-        removed: true
+      passenger_hash = {
+        "passenger": {
+          name: '2019-10-10',
+          phone_num: 303_033_030,
+          removed: true
+        }
       }
-    }
+    end
     it 'can update an existing passenger' do
       expect do
         patch passenger_path(passenger.id), params: passenger_hash
