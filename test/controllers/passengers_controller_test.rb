@@ -48,16 +48,15 @@ describe PassengersController do
   end
 
   describe 'update' do
-    passenger = Passenger.first
-      
-      passenger_hash = {
-        "passenger": {
-          name: "Ariana Bray",
-          phone_num: 27.56,
-        }
+    passenger_hash = {
+      "passenger": {
+        name: 'Ariana Bray',
+        phone_num: 27.56
       }
-      it 'can update an existing passenger' do
-      
+    }
+    it 'can update an existing passenger' do
+      passenger
+      passenger = Passenger.first
 
       expect do
         patch passenger_path(passenger.id), params: passenger_hash
