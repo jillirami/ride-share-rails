@@ -1,30 +1,32 @@
 <h2>View Driver <%=@driver.name%></h2>
 
-<div>
-  <img src="https://loremflickr.com/320/240/face">
-</div>
+<main>
+  <div>
+    <img src="https://loremflickr.com/320/240/face", alt="A random photo of a face">
+  </div>
 
-<ul>
-  <li>Driver Name: <%= @driver.name %><br></li>
-  <li>Driver Vin: <%= @driver.vin %><br></li>
-  <li>Average Rating: <%= @driver.avg_rating %><br></li>
-  <li>Earnings: $<%= @driver.total_earned %><br></li>
-</ul>
+  <ul>
+    <li>Driver Name: <%= @driver.name %><br></li>
+    <li>Driver Vin: <%= @driver.vin %><br></li>
+    <li>Average Rating: <%= @driver.avg_rating %><br></li>
+    <li>Earnings: $<%= @driver.total_earned %><br></li>
+  </ul>
 
-<% if @driver.trips.length != 0 %>
-  <br>Driver Trips: <% @driver.trips.each do |t| %>
-  <% date = t.date %>
-    <ul><li> Trip on <%= link_to date, trip_path(t.id) %></li></ul>
+  <% if @driver.trips.length != 0 %>
+    <br>Driver Trips: <% @driver.trips.each do |t| %>
+    <% date = t.date %>
+      <ul><li> Trip on <%= link_to date, trip_path(t.id) %></li></ul>
+    <% end %>
   <% end %>
-<% end %>
 
-<br>
-<ul>
-  <li>
-    <%= link_to "Edit Driver", edit_driver_path(@driver.id) %><br>
-  </li>
-  <li>
-    <%= link_to "Delete Driver", 
-      driver_path(@driver.id), method: :delete %>
-  </li>
-</ul>
+  <br>
+  <ul>
+    <li>
+      <%= link_to "Edit Driver", edit_driver_path(@driver.id) %><br>
+    </li>
+    <li>
+      <%= link_to "Delete Driver", 
+        driver_path(@driver.id), method: :delete %>
+    </li>
+  </ul>
+</main>

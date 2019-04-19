@@ -7,22 +7,24 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   </head>
+<main>
+  <body>
+  <h1><%= link_to "RideShare", root_path%></h1>
+    <nav>
+      <ul>
+        <li><%= link_to "View All Passengers", passengers_path %></li>
+        <li><%= link_to "View All Drivers", drivers_path %></li>
+        <li><%= link_to "Create New Passenger", new_passenger_path%></li>
+        <li><%= link_to "Create New Driver", new_driver_path%></li>
+      </ul>
+    </nav>
 
-<body>
-<h1><%= link_to "RideShare", root_path%></h1>
-  <nav>
-    <ul>
-      <li><%= link_to "View All Passengers", passengers_path %></li>
-      <li><%= link_to "View All Drivers", drivers_path %></li>
-      <li><%= link_to "Create New Passenger", new_passenger_path%></li>
-      <li><%= link_to "Create New Driver", new_driver_path%></li>
-    </ul>
-  </nav>
 
-
-  <main>
-    <%= yield %>
-  </main>
-</body>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</main>
 </html>

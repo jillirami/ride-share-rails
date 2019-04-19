@@ -1,55 +1,55 @@
 <h2>Passenger Details: <%= @passenger.name %></h2>
+<main>
+  <% nil_trips = @passenger.trips.where(rating: nil) %>
+  <%# add logic to change driver status back to true%>
+  <% if nil_trips.length > 0 %>
+      <div>
+        <%= form_with model: nil_trips.first, class: "rating" do |f| %> 
+        
+        <%= f.label :rating %>
+        <%= f.select :rating, (1..5) %>
 
-<% nil_trips = @passenger.trips.where(rating: nil) %>
-<%# add logic to change driver status back to true%>
-<% if nil_trips.length > 0 %>
-    <div>
-      <%= form_with model: nil_trips.first, class: "rating" do |f| %> 
+        <%= f.submit "Submit Rating", class: "rating-save-button" %> 
+        <% end %> 
+      </div>
       
-      <%= f.label :rating %>
-      <%= f.select :rating, (1..5) %>
+  <% else %> 
+      <div class="request">
+        <%= link_to "Request a Ride!", passenger_trips_path(@passenger.id), method: :post %>
+      </div>
+  <% end %>
 
-      <%= f.submit "Submit Rating", class: "rating-save-button" %> 
-      <% end %> 
+
+    <div class="photo">
+      <img src="https://www.fillmurray.com/200/200", alt="A picture of Bill Murray">
     </div>
-    
-<% else %> 
-    <div>
-      <%= link_to "Request a Ride!", passenger_trips_path(@passenger.id), method: :post %>
-    </div>
-<% end %>
 
-
-  <div class="photo">
-    <img src="https://picsum.photos/200">
-  </div>
-
-  <ul>
-    <li>
-      <%= @passenger.name %>
-    </li>
-    <li>
-      <%= @passenger.phone_num %>
-    </li>
-    <li>
-    <% @passenger.trips.each do |trip|%>
-    </li>
-      Trip On: <%=link_to trip.date, trip_path(trip.id)%>
-    <li>
-    <%end%>
-      Total amount charged: $<%= @passenger.total_charged %>
-    </li>
-  </ul>
-  
-<footer>
-  <nav>
     <ul>
       <li>
-        <%= link_to "Edit Passenger", edit_passenger_path %>
+        <%= @passenger.name %>
       </li>
       <li>
-        <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
+        <%= @passenger.phone_num %>
+      </li>
+      <li>
+      <% @passenger.trips.each do |trip|%>
+        Trip On: <%=link_to trip.date, trip_path(trip.id)%>
+      </li>
+      <%end%>
+        Total amount charged: $<%= @passenger.total_charged %>
       </li>
     </ul>
-  </nav>
-</footer>
+    
+  <footer>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "Edit Passenger", edit_passenger_path %>
+        </li>
+        <li>
+          <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete the record for #{@passenger.name}?"} %>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+</main>

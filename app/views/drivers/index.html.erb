@@ -1,9 +1,11 @@
 <h2>All Drivers</h2>
 
-<% @drivers.each do |driver|%>
-<ul><% name = driver.name %>
-  <li>Name: <%= link_to name, driver_path(driver.id) %>  </li>
-</ul>
-<% end %>
+<main>
+  <% @drivers.each do |driver|%>
+  <ul><% name = driver.name %>
+    <li>Name: <%= link_to name, driver_path(driver.id) %>  </li>
+  </ul>
+  <% end %>
+</main>
 
 

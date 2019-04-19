@@ -1,0 +1,21 @@
+
+h2 {
+  text-align: center;
+}
+
+form {
+  padding: 30px;
+}
+
+.request {
+  padding: 10px;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-color: tomato;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
