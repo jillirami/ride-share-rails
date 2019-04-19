@@ -55,7 +55,6 @@ describe PassengersController do
       }
     }
     it 'can update an existing passenger' do
-    
       passenger = Passenger.first
 
       expect do
